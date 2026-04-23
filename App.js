@@ -3,7 +3,6 @@ import { CartProvider } from './src/context/CartContext.js';
 import { AuthProvider } from './src/context/AuthContext.js';
 import Header from './src/components/Header.js';
 import Footer from './src/components/Footer.js';
-import CartSidebarNew from './src/components/CartSidebarNew.js';
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -22,7 +21,6 @@ function App() {
                         <Outlet />
                     </main>
                     <Footer />
-                    <CartSidebarNew />
                 </div>
             </CartProvider>
         </AuthProvider>
