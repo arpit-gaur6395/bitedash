@@ -1,5 +1,5 @@
 // Vercel proxy URL (update after deployment)
-const VERCEL_PROXY_URL = process.env.REACT_APP_VERCEL_PROXY_URL || 'http://localhost:3000/api';
+const VERCEL_PROXY_URL = process.env.REACT_APP_VERCEL_PROXY_URL || '/api';
 const LAT = '28.6139';
 const LNG = '77.2090';
 
@@ -135,20 +135,40 @@ export async function fetchRestaurants() {
     }
 
     const data = await response.json();
+    console.log('API Response:', data);
+
+    // Try multiple possible response structures
+    let restaurants = [];
+
+    // Structure 1: data.data.cards with gridElements
     if (data?.data?.cards) {
-      const restaurants = [];
       data.data.cards.forEach(card => {
         if (card?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
           restaurants.push(...card.card.card.gridElements.infoWithStyle.restaurants);
         }
       });
-      if (restaurants.length > 0) {
-        return transformRestaurantData(restaurants);
-      }
     }
 
+    // Structure 2: Direct restaurants array
+    if (restaurants.length === 0 && Array.isArray(data?.restaurants)) {
+      restaurants = data.restaurants;
+    }
+
+    // Structure 3: data.restaurants
+    if (restaurants.length === 0 && Array.isArray(data?.data?.restaurants)) {
+      restaurants = data.data.restaurants;
+    }
+
+    console.log('Extracted restaurants:', restaurants.length);
+
+    if (restaurants.length > 0) {
+      return transformRestaurantData(restaurants);
+    }
+
+    console.log('Falling back to mock data');
     return mockRestaurants;
   } catch (error) {
+    console.error('API Error:', error);
     return mockRestaurants;
   }
 }

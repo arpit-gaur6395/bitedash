@@ -53,6 +53,7 @@ export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const addItem = (item) => {
+    console.log('Adding item to cart:', item);
     dispatch({ type: 'ADD_ITEM', payload: item });
     setIsCartOpen(true);
   };
