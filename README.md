@@ -4,13 +4,13 @@ A modern food delivery application built with React, featuring restaurant listin
 
 ## Features
 
-- 🍕 Restaurant browsing and filtering
-- 🛒 Shopping cart functionality
-- 🛒 Grocery shopping section
-- 🔐 Firebase authentication (Login/Signup)
-- 📱 Responsive design with Tailwind CSS
-- 🔍 Search functionality
-- ⭐ Restaurant ratings and reviews
+- Restaurant browsing and filtering
+- Shopping cart functionality
+- Grocery shopping section
+- Firebase authentication (Login/Signup)
+- Responsive design with Tailwind CSS
+- Search functionality
+- Restaurant ratings and reviews
 
 ## Tech Stack
 
