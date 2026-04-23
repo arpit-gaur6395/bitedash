@@ -1,12 +1,9 @@
-import { lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { CartProvider } from './src/context/CartContext.js';
 import { AuthProvider } from './src/context/AuthContext.js';
-
-// Code splitting - lazy load components
-const Header = lazy(() => import('./src/components/Header.js'));
-const Footer = lazy(() => import('./src/components/Footer.js'));
-const CartSidebarNew = lazy(() => import('./src/components/CartSidebarNew.js'));
+import Header from './src/components/Header.js';
+import Footer from './src/components/Footer.js';
+import CartSidebarNew from './src/components/CartSidebarNew.js';
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -19,16 +16,14 @@ function App() {
     return (
         <AuthProvider>
             <CartProvider>
-                <Suspense fallback={<LoadingFallback />}>
-                    <div className="min-h-screen flex flex-col">
-                        <Header />
-                        <main className="flex-1">
-                            <Outlet />
-                        </main>
-                        <Footer />
-                        <CartSidebarNew />
-                    </div>
-                </Suspense>
+                <div className="min-h-screen flex flex-col">
+                    <Header />
+                    <main className="flex-1">
+                        <Outlet />
+                    </main>
+                    <Footer />
+                    <CartSidebarNew />
+                </div>
             </CartProvider>
         </AuthProvider>
     );

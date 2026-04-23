@@ -1,17 +1,15 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import ErrorBoundary from './src/components/ErrorBoundary.js';
 import App from './App';
+import Body from './src/components/Body.js';
+import Cart from './src/components/Cart.js';
+import RestaurantDetail from './src/components/RestaurantDetail.js';
+import Grocery from './src/components/GroceryNew.js';
+import About from './src/components/About.js';
+import Contact from './src/components/Contact.js';
 import './src/styles/main.css';
-
-// Code splitting - lazy load all route components
-const Body = lazy(() => import('./src/components/Body.js'));
-const Cart = lazy(() => import('./src/components/Cart.js'));
-const RestaurantDetail = lazy(() => import('./src/components/RestaurantDetail.js'));
-const Grocery = lazy(() => import('./src/components/GroceryNew.js'));
-const About = lazy(() => import('./src/components/About.js'));
-const Contact = lazy(() => import('./src/components/Contact.js'));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -30,51 +28,27 @@ const appRouter = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <Body />
-                    </Suspense>
-                )
+                element: <Body />
             },
             {
                 path: 'about',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <About />
-                    </Suspense>
-                )
+                element: <About />
             },
             {
                 path: 'contact',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <Contact />
-                    </Suspense>
-                )
+                element: <Contact />
             },
             {
                 path: 'cart',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <Cart />
-                    </Suspense>
-                )
+                element: <Cart />
             },
             {
                 path: 'restaurant/:id',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <RestaurantDetail />
-                    </Suspense>
-                )
+                element: <RestaurantDetail />
             },
             {
                 path: 'grocery',
-                element: (
-                    <Suspense fallback={<LoadingFallback />}>
-                        <Grocery />
-                    </Suspense>
-                )
+                element: <Grocery />
             }
         ]
     }
