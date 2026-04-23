@@ -122,12 +122,15 @@ const mockMenuData = {
  */
 export async function fetchRestaurants() {
   try {
-    const url = `${VERCEL_PROXY_URL}?path=restaurants/list/v5&lat=${LAT}&lng=${LNG}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    const timestamp = Date.now();
+    const url = `${VERCEL_PROXY_URL}?path=restaurants/list/v5&lat=${LAT}&lng=${LNG}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING&_t=${timestamp}`;
 
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
       },
+      cache: 'no-store',
     });
 
     if (!response.ok) {
