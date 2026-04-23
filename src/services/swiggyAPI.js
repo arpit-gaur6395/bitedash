@@ -1,6 +1,99 @@
-const CORS_PROXY = 'https://corsproxy.io/?';
+// Vercel proxy URL (update after deployment)
+const VERCEL_PROXY_URL = process.env.REACT_APP_VERCEL_PROXY_URL || 'http://localhost:3000/api';
 const LAT = '28.6139';
 const LNG = '77.2090';
+
+// Mock restaurant data for fallback
+const mockRestaurants = [
+  {
+    id: '1',
+    name: 'Burger King',
+    cuisine: 'Burger, Fast Food',
+    rating: 4.2,
+    deliveryTime: '30 mins',
+    costForTwo: '₹400',
+    image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Connaught Place',
+    locality: 'Central Delhi'
+  },
+  {
+    id: '2',
+    name: 'Pizza Hut',
+    cuisine: 'Pizza, Italian',
+    rating: 4.1,
+    deliveryTime: '35 mins',
+    costForTwo: '₹500',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Rajouri Garden',
+    locality: 'West Delhi'
+  },
+  {
+    id: '3',
+    name: 'KFC',
+    cuisine: 'Chicken, Fast Food',
+    rating: 4.3,
+    deliveryTime: '25 mins',
+    costForTwo: '₹450',
+    image: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Saket',
+    locality: 'South Delhi'
+  },
+  {
+    id: '4',
+    name: 'Dominos',
+    cuisine: 'Pizza, Fast Food',
+    rating: 4.0,
+    deliveryTime: '30 mins',
+    costForTwo: '₹400',
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Dwarka',
+    locality: 'South West Delhi'
+  },
+  {
+    id: '5',
+    name: 'Haldiram',
+    cuisine: 'North Indian, Sweets',
+    rating: 4.5,
+    deliveryTime: '40 mins',
+    costForTwo: '₹600',
+    image: 'https://images.unsplash.com/photo-1567337710282-00832b415979?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Chandni Chowk',
+    locality: 'Old Delhi'
+  },
+  {
+    id: '6',
+    name: 'Biryani Blues',
+    cuisine: 'Biryani, Mughlai',
+    rating: 4.4,
+    deliveryTime: '35 mins',
+    costForTwo: '₹550',
+    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Nehru Place',
+    locality: 'South Delhi'
+  },
+  {
+    id: '7',
+    name: ' Subway',
+    cuisine: 'Healthy, Sandwich',
+    rating: 4.1,
+    deliveryTime: '20 mins',
+    costForTwo: '₹350',
+    image: 'https://images.unsplash.com/photo-1553247407-23251ce81f59?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Karol Bagh',
+    locality: 'Central Delhi'
+  },
+  {
+    id: '8',
+    name: 'McDonalds',
+    cuisine: 'Burger, Fast Food',
+    rating: 4.2,
+    deliveryTime: '25 mins',
+    costForTwo: '₹400',
+    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=300&q=80',
+    areaName: 'Vasant Kunj',
+    locality: 'South Delhi'
+  }
+];
 
 // Mock menu data for fallback
 const mockMenuData = {
@@ -29,12 +122,11 @@ const mockMenuData = {
  */
 export async function fetchRestaurants() {
   try {
-    const url = `${CORS_PROXY}https://www.swiggy.com/dapi/restaurants/list/v5?lat=${LAT}&lng=${LNG}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    const url = `${VERCEL_PROXY_URL}?path=restaurants/list/v5&lat=${LAT}&lng=${LNG}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
     });
 
@@ -69,12 +161,11 @@ export async function fetchRestaurants() {
  */
 export async function fetchRestaurantMenu(restaurantId) {
   try {
-    const url = `${CORS_PROXY}https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${LAT}&lng=${LNG}&restaurantId=${restaurantId}`;
+    const url = `${VERCEL_PROXY_URL}?path=menu/pl&page-type=REGULAR_MENU&complete-menu=true&lat=${LAT}&lng=${LNG}&restaurantId=${restaurantId}`;
 
     const response = await fetch(url, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
     });
 
