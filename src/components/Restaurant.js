@@ -160,28 +160,40 @@ function Restaurant() {
     </div>
   ) : (
     <div className="container mx-auto px-4 pb-6">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mt-0 md:mt-6 mb-0 md:mb-6">
-        <div className="flex gap-3 overflow-x-auto pb-4 lg:flex-wrap lg:overflow-visible scrollbar-hide">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
+        <div className="flex gap-2 flex-wrap w-full lg:w-auto">
           <button
-            className="px-3 py-2 rounded-lg border border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors"
+            className={`px-3 py-2 md:px-4 py-2 rounded-full border font-medium transition-colors text-sm md:text-base ${activeFilter === "all"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "bg-white text-gray-600 border-gray-200 hover:bg-orange-50 hover:border-orange-500"
+              }`}
             onClick={showAllRestaurants}
           >
             All
           </button>
           <button
-            className="px-3 py-2 rounded-lg border border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors"
+            className={`px-3 py-2 md:px-4 py-2 rounded-full border font-medium transition-colors text-sm md:text-base ${activeFilter === "top"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "bg-white text-gray-600 border-gray-200 hover:bg-orange-50 hover:border-orange-500"
+              }`}
             onClick={showTopRatedRestaurants}
           >
             Top
           </button>
           <button
-            className="px-3 py-2 rounded-lg border border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors"
+            className={`px-3 py-2 md:px-4 py-2 rounded-full border font-medium transition-colors text-sm md:text-base ${activeFilter === "fast"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "bg-white text-gray-600 border-gray-200 hover:bg-orange-50 hover:border-orange-500"
+              }`}
             onClick={showFastDeliveryRestaurants}
           >
             Fast
           </button>
           <button
-            className="px-3 py-2 rounded-lg border border-gray-300 hover:bg-orange-500 hover:text-white hover:border-orange-500 transition-colors"
+            className={`px-3 py-2 md:px-4 py-2 rounded-full border font-medium transition-colors text-sm md:text-base ${activeFilter === "budget"
+              ? "bg-orange-500 text-white border-orange-500"
+              : "bg-white text-gray-600 border-gray-200 hover:bg-orange-50 hover:border-orange-500"
+              }`}
             onClick={showBudgetFriendlyRestaurants}
           >
             Budget
