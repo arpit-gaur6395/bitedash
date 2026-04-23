@@ -1,6 +1,6 @@
 import { useCart } from "../context/CartContext.js";
 
-function CartSidebar() {
+function CartSidebarNew() {
   const { items, isCartOpen, setIsCartOpen, removeItem, updateQuantity, getTotalPrice } = useCart();
   const totalPrice = getTotalPrice();
 
@@ -91,4 +91,4 @@ function CartSidebar() {
   );
 }
 
-export default CartSidebar;
+export default CartSidebarNew;
